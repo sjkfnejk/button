@@ -1,41 +1,80 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-class _MyAppState extends State<MyApp> {
+  static const String _title = 'Flutter Code Sample';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: _title,
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Flutter FlatButton - tutorialkart.com'),
+        appBar: AppBar(title: const Text(_title)),
+        body: const MyStatelessWidget(),
+      ),
+    );
+  }
+}
+
+class MyStatelessWidget extends StatelessWidget {
+  const MyStatelessWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+            ),
+            onPressed: null,
+            child: const Text('Disabled'),
           ),
-          body: Center(child: Column(children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(20),
-              child: TextButton(
-                child: Text('Login'),
-                onPressed: () {},
-              ),
+          const SizedBox(height: 30),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
             ),
-            Container(
-              margin: EdgeInsets.all(20),
-              child: TextButton(
-                child: Text('Login',style: TextStyle(color: Colors.white),),
-                style:TextButton.styleFrom(backgroundColor:Colors.blueAccent,),
-
-
-                onPressed: () {},
-              ),
+            onPressed: () {},
+            child: const Text('Enabled'),
+          ),
+          const SizedBox(height: 30),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: Stack(
+              children: <Widget>[
+                Positioned.fill(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: <Color>[
+                          Color(0xFF0D47A1),
+                          Color(0xFF1976D2),
+                          Color(0xFF42A5F5),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {},
+                  child: const Text('Gradient'),
+                ),
+              ],
             ),
-          ]))),
+          ),
+        ],
+      ),
     );
   }
 }
